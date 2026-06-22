@@ -1,7 +1,7 @@
 # Predictive Rail Impact: Modeling Commuter Wait Times
 
 ## Problem Statement
-**Question:** If the MRT-3 and LRT-1 reduce their peak-hour train frequency (headway) by exactly 2 minutes through the deployment of additional train sets, how many cumulative passenger waiting hours would be saved weekly, and which specific stations would experience the most significant drop in platform crowding?
+**Question:** If we cut peak-hour waiting times on the MRT-3 and LRT-1 by exactly 2 minutes, how many total hours will commuters save every week, and which specific stations will see the biggest drop in platform overcrowding?
 
 ## Target Audience
 The **Department of Transportation (DOTr)**, **Light Rail Transit Authority (LRTA)**, and **Metro Rail Transit Corporation (MRTC)**. They need data-backed models to justify the massive capital expenditure required to purchase and deploy new train cars.
