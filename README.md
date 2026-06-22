@@ -14,7 +14,7 @@ To serve both audiences, the main metrics I want to track are:
 4. Optimal Travel Windows (Best/worst times to ride)
 
 ## Data Sources
-* **FOI DOTr Open Data Portal:** [www.foi.gov.ph](https://www.foi.gov.ph/) (For historical MRT-3/LRT ridership volumes, hourly entry/exit counts, and station dimensions).
+* **FOI DOTr Open Data Portal:** [www.foi.gov.ph](https://www.foi.gov.ph/) (For historical MRT-3 ridership volumes, hourly entry/exit counts, and station dimensions).
 * **Metro Manila GTFS Data:** [github.com/sakayph/gtfs](https://github.com/sakayph/gtfs) (For transit schedules and route geometries to establish baseline headways).
 
 ## Final Dashboard Concept
