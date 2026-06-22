@@ -1,4 +1,4 @@
-# Predictive Rail Impact: Modeling Commuter Wait Times
+# Beating the Rush: The Metro Manila Rail Dashboard
 
 ## Problem Statement
 **Question:** If we cut peak-hour waiting times on the MRT-3 and LRT-1 by exactly 2 minutes, how many total hours will commuters save every week, and which specific stations will see the biggest drop in platform overcrowding?
