@@ -79,3 +79,13 @@ To ensure data quality for the Headway Simulator, the following rules were appli
 * **Coerced numeric types:** Enforced integer types for passenger counts, replacing any empty hourly intervals with `0`.
 * **Unpivoted structure:** Converted the wide format (stations as columns) into a long format to create a unified `station_name` column for cleaner SQL grouping.
 * **Automated Validation:** Added `assert` statements to guarantee no negative passenger counts and no nulls in the primary keys.
+
+---
+
+## How To Run
+
+Follow these steps to execute the data pipeline from raw data ingestion to final analysis:
+
+1. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
