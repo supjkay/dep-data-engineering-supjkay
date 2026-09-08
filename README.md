@@ -69,3 +69,13 @@ To prepare the raw DOTr eFOI Excel file for the Headway Simulator, the ingestion
 * `hourly_entries` (Integer): Total passengers entering the station turnstiles.
 * `hourly_exits` (Integer): Total passengers exiting the station turnstiles.
 * `arrival_rate_per_min` (Float): A derived metric (`hourly_entries / 60`). This is a critical engineered feature that serves as the direct mathematical input for the Headway Simulator to calculate minute-by-minute platform crowding.
+
+--
+
+### Transformation & Cleaning Log
+To ensure data quality for the Headway Simulator, the following rules were applied in `scripts/transform.py`:
+* **Dropped empty rows:** Removed rows missing a `date` value to eliminate blank spreadsheet rows.
+* **Forward-filled dates:** The raw Excel file only prints the date once per day. Forward-filling ensures every hourly record is properly associated with its calendar date.
+* **Coerced numeric types:** Enforced integer types for passenger counts, replacing any empty hourly intervals with `0`.
+* **Unpivoted structure:** Converted the wide format (stations as columns) into a long format to create a unified `station_name` column for cleaner SQL grouping.
+* **Automated Validation:** Added `assert` statements to guarantee no negative passenger counts and no nulls in the primary keys.

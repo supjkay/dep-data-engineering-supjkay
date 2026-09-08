@@ -67,7 +67,27 @@ def main():
         df_long['passenger_count'] / 60.0,
         0.0
     )
+
+    # ---------------------------------------------------------
+    # NEW CODE TO INSERT: Step 5.5 - Validation Checks
+    # ---------------------------------------------------------
+    print("Running validation checks...")
     
+    # Check 1: No missing values in our primary composite key
+    assert df_long['date'].isna().sum() == 0, "Validation Failed: Nulls found in 'date' column."
+    assert df_long['time_interval'].isna().sum() == 0, "Validation Failed: Nulls found in 'time_interval' column."
+    assert df_long['station_name'].isna().sum() == 0, "Validation Failed: Nulls found in 'station_name' column."
+    
+    # Check 2: Passenger counts should never be negative
+    assert df_long['passenger_count'].min() >= 0, "Validation Failed: Negative passenger count detected."
+    
+    # Check 3: Arrival rate should never be negative
+    assert df_long['arrival_rate_per_min'].min() >= 0, "Validation Failed: Negative arrival rate detected."
+    
+    print("All validation checks passed!")
+    
+    # ---------------------------------------------------------
+
     # 6. Save the Final Analysis-Ready Dataset
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     df_long.to_csv(OUTPUT_FILE, index=False)
