@@ -44,3 +44,28 @@ Since the raw DOTr ridership data provides hourly entry/exit aggregations rather
 1. **Uniform Passenger Arrival Rate:** We assume commuters enter the station at a relatively uniform rate across a given hour (e.g., an hourly volume of 600 passengers equates to an arrival rate of 10 passengers per minute).
 2. **Crowding Accumulation:** Platform crowding is calculated as the accumulated difference between the minute-by-minute passenger arrival rate and the clearance capacity of the trains arriving at the scheduled headway.
 3. **Fixed Train Capacity:** Train carrying capacity is assumed constant per trip for the sake of baseline headway impact calculations.
+
+--
+
+## Processed Dataset Schema Plan
+
+To prepare the raw DOTr eFOI Excel file for the Headway Simulator, the ingestion pipeline will transform the human-readable "wide" format into a normalized "long" format. 
+
+### Key Table / File
+* `processed_mrt3_ridership.csv`
+
+### The Grain
+* **One row = One station's passenger traffic for one specific hour on a given date.** 
+* *Note: This prevents mixing grains by unpivoting the 13 separate station columns from the raw data into a single unified station column.*
+
+### Identifiers (Primary Keys)
+* **Composite Primary Key:** `date` + `hour_start` + `station_name`
+* This combination guarantees that every row is 100% unique and explicitly identifiable.
+
+### Expected Columns
+* `date` (Date): The calendar date of the operational record (e.g., 2026-01-01).
+* `hour_start` (Time/String): The beginning of the 1-hour interval (e.g., "06:00:00").
+* `station_name` (String): The standardized name of the MRT-3 station (e.g., "North Ave").
+* `hourly_entries` (Integer): Total passengers entering the station turnstiles.
+* `hourly_exits` (Integer): Total passengers exiting the station turnstiles.
+* `arrival_rate_per_min` (Float): A derived metric (`hourly_entries / 60`). This is a critical engineered feature that serves as the direct mathematical input for the Headway Simulator to calculate minute-by-minute platform crowding.
